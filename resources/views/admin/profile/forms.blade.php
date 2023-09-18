@@ -99,7 +99,7 @@
                         </div>
                     </div><!-- Col -->
                 </div><!-- Row -->
-                <button type="submit" class="btn btn-primary submit">Submit form</button>
+                <button type="submit" class="btn btn-primary submit">Save Changes</button>
             </form>
     </div>
 </div>

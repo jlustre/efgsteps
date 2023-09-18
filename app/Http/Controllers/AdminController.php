@@ -33,13 +33,6 @@ class AdminController extends Controller
         return view('admin.admin_profile', compact('profileData'));
     } // end method
 
-    public function AdminChangePassword() {
-        $id = Auth::user()->id;
-        $profileData = User::find($id);
-
-        return view('admin.profile.admin_change_password', compact('profileData'));
-    } // end method
-
     public function AdminProfileStore(Request $request) {
         $id = Auth::user()->id;
         $profileData = User::find($id);
@@ -74,33 +67,43 @@ class AdminController extends Controller
         return redirect()->back()->with($notification);
     } // end method
 
-    public function AdminPasswordStore(Request $request) {
+    //This will show the form
+    public function AdminChangePassword() {
+        $id = Auth::user()->id;
+        $profileData = User::find($id);
+
+        return view('admin.profile.admin_change_password', compact('profileData'));
+    } // end method
+
+    //This will save the changes
+    public function AdminUpdatePassword(Request $request) {
 
         $request->validate([
             'old_password' => 'required',
             'new_password' => 'required|confirmed'
         ]);
 
+        // Match the old password
         if(!Hash::check($request->old_password, Auth::user()->password)) {
              $notification = array(
-                'message' => 'Old Password Is Not Correct!',
+                'message' => 'Old Password Is Incorrect!',
                 'alert-type' => 'error'
             );
 
             return back()->with($notification);
         }
 
-        $profileData = User::find($id);
-
-        $profileData->password = bcrypt($request->password);
-        $profileData->save();
+        // Update the new password
+        User::whereId(Auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
 
         $notification = array(
-            'message' => 'Admin Password Updated Successfully!',
+            'message' => 'Password Updated Successfully!',
             'alert-type' => 'success'
         );
 
-        return redirect()->back()->with($notification);
+        return back()->with($notification);
     } // end method
 
 }

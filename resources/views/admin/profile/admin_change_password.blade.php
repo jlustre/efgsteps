@@ -3,7 +3,6 @@
 @section('page-content')
     <div class="page-content">
         @include('admin.body.page_header', [$header = 'My Profile: '.$profileData->username])
-        {{-- @include('admin.profile.picture_header') --}}
 
         <div class="row profile-body">
           <!-- left wrapper start -->

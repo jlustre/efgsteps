@@ -16,22 +16,22 @@
                     </div><!-- Col -->
                     <div class="col-sm-12">
                         <div class="mb-3">
-                            <label for="password" class="form-label">New Password <span class="required">*</span></label>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password">
-                            @error('password')
+                            <label for="new_password" class="form-label">New Password <span class="required">*</span></label>
+                            <input type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" id="new_password">
+                            @error('new_password')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div><!-- Col -->
                     <div class="col-sm-12">
                         <div class="mb-3">
-                            <label for="password_confirmation" class="form-label">Confirm New Password <span class="required">*</span></label>
-                            <input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
+                            <label for="new_password_confirmation" class="form-label">Confirm New Password <span class="required">*</span></label>
+                            <input type="password" class="form-control" name="new_password_confirmation" id="new_password_confirmation">
                         </div>
                     </div><!-- Col -->
                 </div><!-- Row -->
 
-                <button type="submit" class="btn btn-primary submit">Submit form</button>
+                <button type="submit" class="btn btn-primary submit">Save Changes</button>
             </form>
     </div>
 </div>
