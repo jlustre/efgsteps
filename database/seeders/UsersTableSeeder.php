@@ -17,8 +17,8 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             // admin
             [
-            'name' => 'Administrator',
-            'username' => 'admin',
+            'name' => 'SuperAdmin',
+            'username' => 'superadmin',
             'sponsor' => 'asbeesceo',
             'email' => 'admin@efgsteps.com',
             'password' => Hash::make('111'),
@@ -26,11 +26,11 @@ class UsersTableSeeder extends Seeder
             'city_town' => 'Burnaby',
             'state_province' => 'BC',
             'country' => 'ca',
-            'current_rank' => 'SM',
+            'current_rank' => '3',
             'created_at' => now()
             ],
 
-            // Trainor
+            // Trainer
             [
             'name' => 'Trainer',
             'username' => 'trainer',
@@ -41,7 +41,7 @@ class UsersTableSeeder extends Seeder
             'city_town' => 'Burnaby',
             'state_province' => 'BC',
             'country' => 'ca',
-            'current_rank' => 'SM',
+            'current_rank' => '3',
             'created_at' => now()
             ],
 
@@ -56,7 +56,7 @@ class UsersTableSeeder extends Seeder
             'city_town' => 'Burnaby',
             'state_province' => 'AB',
             'country' => 'ca',
-            'current_rank' => 'SFA',
+            'current_rank' => '2',
             'created_at' => now()
             ],
             [
@@ -65,11 +65,11 @@ class UsersTableSeeder extends Seeder
             'sponsor' => 'trainer',
             'email' => 'jhayjhay@efgsteps.com',
             'password' => Hash::make('111'),
-            'role' => 'trainer',
+            'role' => 'user',
             'city_town' => 'Santa Clarita',
             'state_province' => 'CA',
             'country' => 'us',
-            'current_rank' => 'SM',
+            'current_rank' => '3',
             'created_at' => now()
             ],
             [
@@ -82,7 +82,7 @@ class UsersTableSeeder extends Seeder
             'city_town' => 'Burnaby',
             'state_province' => 'BC',
             'country' => 'ca',
-            'current_rank' => 'SFA',
+            'current_rank' => '2',
             'created_at' => now()
             ],
             [
@@ -95,7 +95,7 @@ class UsersTableSeeder extends Seeder
             'city_town' => 'Burnaby',
             'state_province' => 'BC',
             'country' => 'ca',
-            'current_rank' => 'FA',
+            'current_rank' => '1',
             'created_at' => now()
             ],
         ]);

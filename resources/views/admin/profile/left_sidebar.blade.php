@@ -1,9 +1,9 @@
 <div class="card rounded">
     @php
-        $rank['FA'] = 'Field Associate (FA)';
-        $rank['SM'] = 'Senior Field Associate (SFA)';
-        $rank['SM'] = 'Sales Manager (SM)';
-        $rank['SM'] = 'Executive Director (ED)';
+        $rank['1'] = 'Field Associate (FA)';
+        $rank['2'] = 'Senior Field Associate (SFA)';
+        $rank['3'] = 'Senior Manager (SM)';
+        $rank['4'] = 'Executive Director (ED)';
     @endphp
     <div class="card-body">
     <div class="d-flex align-items-center justify-content-between mb-2">
@@ -26,7 +26,7 @@
     </div>
     <div class="mt-2">
         <label class="tx-11 fw-bolder mb-0 text-uppercase">Role:</label>
-        <p class="text-muted">{{ $profileData->role == 'trainor' ? 'Certified Field Trainor' :  $profileData->role }}</p>
+        <p class="text-muted">{{ $profileData->role == 2 ? 'Certified Field Trainer' :  $profileData->role }}</p>
     </div>
     <div class="mt-2">
         <label class="tx-11 fw-bolder mb-0 text-uppercase">Email:</label>

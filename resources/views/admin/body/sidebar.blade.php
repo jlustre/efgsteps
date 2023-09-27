@@ -18,6 +18,20 @@
                     <span class="link-title">Dashboard</span>
                 </a>
             </li>
+            <li class="nav-item nav-category">Checklists</li>
+            <li class="nav-item">
+                <a href="{{ route('all.steps.fap', 'ca') }}" class="nav-link">
+                    <i class="link-icon" data-feather="user-check"></i>
+                    <span class="link-title">FAP Steps (CA)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('all.steps.fap', 'us') }}" class="nav-link">
+                    <i class="link-icon" data-feather="user-check"></i>
+                    <span class="link-title">FAP Steps (US)</span>
+                </a>
+            </li>
+
             <li class="nav-item nav-category">web apps</li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
@@ -51,120 +65,48 @@
                     <span class="link-title">Calendar</span>
                 </a>
             </li>
-            <li class="nav-item nav-category">Components</li>
+
+            <li class="nav-item nav-category">Roles & Permissions</li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false" aria-controls="uiComponents">
-                    <i class="link-icon" data-feather="feather"></i>
-                    <span class="link-title">UI Kit</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="uiComponents">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="pages/ui-components/accordion.html" class="nav-link">Accordion</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#advancedUI" role="button" aria-expanded="false" aria-controls="advancedUI">
-                    <i class="link-icon" data-feather="anchor"></i>
-                    <span class="link-title">Advanced UI</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="advancedUI">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="pages/advanced-ui/cropper.html" class="nav-link">Cropper</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#forms" role="button" aria-expanded="false" aria-controls="forms">
-                    <i class="link-icon" data-feather="inbox"></i>
-                    <span class="link-title">Forms</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="forms">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="pages/forms/basic-elements.html" class="nav-link">Basic Elements</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link"  data-bs-toggle="collapse" href="#charts" role="button" aria-expanded="false" aria-controls="charts">
-                    <i class="link-icon" data-feather="pie-chart"></i>
-                    <span class="link-title">Charts</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="charts">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="pages/charts/apex.html" class="nav-link">Apex</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#tables" role="button" aria-expanded="false" aria-controls="tables">
-                    <i class="link-icon" data-feather="layout"></i>
-                    <span class="link-title">Table</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="tables">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="pages/tables/basic-table.html" class="nav-link">Basic Tables</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#icons" role="button" aria-expanded="false" aria-controls="icons">
-                    <i class="link-icon" data-feather="smile"></i>
-                    <span class="link-title">Icons</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="icons">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="pages/icons/feather-icons.html" class="nav-link">Feather Icons</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item nav-category">Pages</li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" role="button" aria-expanded="false" aria-controls="general-pages">
-                    <i class="link-icon" data-feather="book"></i>
-                    <span class="link-title">Special pages</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="general-pages">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="pages/general/blank-page.html" class="nav-link">Blank page</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#authPages" role="button" aria-expanded="false" aria-controls="authPages">
+                <a class="nav-link" data-bs-toggle="collapse" href="#rolesPermission" role="button" aria-expanded="false" aria-controls="rolesPermission">
                     <i class="link-icon" data-feather="unlock"></i>
-                    <span class="link-title">Authentication</span>
+                    <span class="link-title">Roles & Permissions</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse" id="authPages">
+                <div class="collapse" id="rolesPermission">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="pages/auth/login.html" class="nav-link">Login</a>
+                            <a href="{{ route('all.permissions') }}" class="nav-link">Permissions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('all.roles') }}" class="nav-link">Roles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('all.roles.permission') }}" class="nav-link">Permissions In Roles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('add.roles.permission') }}" class="nav-link">Add Permissions In Roles</a>
                         </li>
                     </ul>
                 </div>
             </li>
+
+            <li class="nav-item nav-category">Manage Users</li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#manageAdmin" role="button" aria-expanded="false" aria-controls="manageAdmin">
+                    <i class="link-icon" data-feather="unlock"></i>
+                    <span class="link-title">Admin</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="manageAdmin">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('all.admin') }}" class="nav-link">All Admin</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#errorPages" role="button" aria-expanded="false" aria-controls="errorPages">
                     <i class="link-icon" data-feather="cloud-off"></i>

@@ -21,13 +21,17 @@ return new class extends Migration
             $table->string('password');
             $table->string('photo')->nullable();
             $table->string('phone')->nullable();
-            $table->enum('role',['admin','trainer','user'])->default('user');
-            $table->enum('current_rank',['FA','SFA','SM', 'ED'])->default('FA');
+            $table->string('role')->default('user');
+            $table->tinyInteger('current_rank')->default(1);
             $table->text('city_town')->nullable();
             $table->text('state_province')->nullable();
             $table->enum('country',['ca','us'])->default('ca');
+            $table->string('timezone')->default('PST');
             $table->enum('status',[0,1])->default(1);
+            $table->date('last_login')->nullable();
+            $table->boolean('isOnline')->default(0);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

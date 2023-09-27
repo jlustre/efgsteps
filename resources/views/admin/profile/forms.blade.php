@@ -15,10 +15,10 @@
                         <div class="mb-3">
                             <label for="current_rank" class="form-label">Rank <span class="required">*</span></label>
                             <select class="form-select" id="current_rank" name="current_rank">
-                                <option {{ $profileData->current_rank === 'FA' ? 'selected' : '' }} value="FA">Field Associate (FA)</option>
-                                <option {{ $profileData->current_rank === 'SFA' ? 'selected' : '' }} value="SFA">Field Associate (SFA)</option>
-                                <option {{ $profileData->current_rank === 'SM' ? 'selected' : '' }} value="SM">Sales Manager (SM)</option>
-                                <option {{ $profileData->current_rank === 'ED' ? 'selected' : '' }} value="ED">Executive Director (ED)</option>
+                                <option {{ $profileData->current_rank == '1' ? 'selected' : '' }} value="1">Field Associate (FA)</option>
+                                <option {{ $profileData->current_rank == '2' ? 'selected' : '' }} value="2">Field Associate (SFA)</option>
+                                <option {{ $profileData->current_rank == '3' ? 'selected' : '' }} value="3">Senior Manager (SM)</option>
+                                <option {{ $profileData->current_rank == '4' ? 'selected' : '' }} value="4">Executive Director (ED)</option>
                             </select>
                         </div>
                     </div><!-- Col -->
@@ -54,9 +54,9 @@
                         <div class="mb-3">
                             <label for="role" class="form-label">Role <span class="required">*</span></label>
                             <select class="form-select" id="role" name="role">
-                                <option {{ $profileData->role === 'user' ? 'selected' : '' }} value="user">Member</option>
                                 <option {{ $profileData->role === 'admin' ? 'selected' : '' }} value="admin">Administrator</option>
-                                <option {{ $profileData->role === 'trainor' ? 'selected' : '' }} value="trainer">Trainer (CFT)</option>
+                                <option {{ $profileData->role === 'trainer' ? 'selected' : '' }} value="trainer">Trainer (CFT)</option>
+                                <option {{ $profileData->role === 'user' ? 'selected' : '' }} value="user">Member</option>
                             </select>
                         </div>
                     </div><!-- Col -->

@@ -40,3 +40,6 @@
  }
  @endif
 </script>
+
+ @yield('scripts')
+

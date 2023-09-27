@@ -25,11 +25,10 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'phone' => fake()->phoneNumber(),
-            'photo' => fake()->imageUrl('60','60'),
-            'role' => fake()->randomElement(['user','trainer']),
+            'role' => fake()->randomElement(['user','trainer', 'admin']),
             'country' => fake()->randomElement(['ca','us']),
             'status' => fake()->randomElement(['0','1']),
-            'current_rank' => fake()->randomElement(['FA','SFA', 'SM']),
+            'current_rank' => fake()->randomElement(['1','2', '3']),
             'remember_token' => Str::random(10),
         ];
     }
