@@ -36,52 +36,112 @@
         </nav>
         <div class="row">
 			<div class="col-md-12 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h6 class="card-title">All Admins</h6>
-                <div class="table-responsive">
-                  <table id="dataTableExample" class="table">
-                    <thead>
-                      <tr>
-                        <th>Id</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Username</th>
-                        <th>Sponsor</th>
-                        <th>Email</th>
-                        <th>Loc</th>
-                        <th>Phone</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    @foreach ($alladmin as $key => $item)
+                <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title">All Admins</h6>
+                    <div class="table-responsive">
+                    <table id="dataTableExample" class="table">
+                        <thead>
                         <tr>
-                            <td>{{ $item->id }}</td>
-                            <td><img src="{{ !empty($item->photo) ? url('upload/admin_images/', $item->photo) : url('upload/no_image.jpg') }}" style="width: 40px; height:40px;"/></td>
-                            <td><strong>{{ $item->name }}</strong></td>
-                            <td>{{ $item->username }}</td>
-                            <td>{{ $item->sponsor }}</td>
-                            <td>{{ $item->email }}</td>
-                            <td>{{ $item->state_province }}</td>
-                            <td>{{ !empty($item->phone) ? $item->phone : 'N/A' }}</td>
-                            <td>
-                                <a href="{{ route('edit.admin', $item->id) }}">
-                                    <i class="link-icon color-green" data-feather="edit"></i>
-                                </a>
-                                <a href="{{ route('delete.admin', $item->id) }}" id="delete">
-                                    <i class="link-icon color-red" data-feather="delete"></i>
-                                </a>
-                            </td>
-                      </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
+                            <th>Id</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>Sponsor</th>
+                            <th>Email</th>
+                            <th>Loc</th>
+                            <th>Phone</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @for ($i=0; $i< count($allAdminArray); $i++)
+                            <tr>
+                                <td>{{ $allAdminArray[$i]['id'] }}</td>
+                                <td><img src="{{ !empty($allAdminArray[$i]['photo']) ? url('upload/admin_images/', $allAdminArray[$i]['photo']) : url('upload/no_image.jpg') }}" style="width: 40px; height:40px;"/></td>
+                                <td><strong>{{ $allAdminArray[$i]['name'] }}</strong></td>
+                                <td><a href="{{ route('view.edit.profile', $allAdminArray[$i]['id']) }}">{{ $allAdminArray[$i]['username'] }}</a></td>
+                                <td><a href="{{ route('view.edit.profile', $allAdminArray[$i]['sponsor_data']->id) }}">{{ $allAdminArray[$i]['sponsor'] }}</a></td>
+                                <td>{{ $allAdminArray[$i]['email'] }}</td>
+                                <td>{{ $allAdminArray[$i]['state_province'] }}</td>
+                                <td>{{ !empty($allAdminArray[$i]['phone']) ? $allAdminArray[$i]['phone'] : 'N/A' }}</td>
+                                <td>
+                                    <a href="{{ route('edit.admin', $allAdminArray[$i]['id']) }}">
+                                        <span data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                            <i class="link-icon color-green" data-feather="edit"></i>
+                                        </span>
+                                    </a>
+                                    <a href="{{ route('delete.admin', $allAdminArray[$i]['id']) }}" id="delete">
+                                        <span data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                            <i class="link-icon color-red" data-feather="delete"></i>
+                                        </span>
+                                    </a>
+                                </td>
+                        </tr>
+                        @endfor
+                        </tbody>
+                    </table>
+                    </div>
                 </div>
-              </div>
-            </div>
-            </div>
-        </div>
+                </div> <!-- end card -->
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+
+    @if(count($allDeletedAdmin) != 0)
+        <hr/>
+        <div class="row">
+			<div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Deleted Admins</h6>
+                        <div class="table-responsive">
+                            <table id="dataTableExample" class="table">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Username</th>
+                                    <th>Sponsor</th>
+                                    <th>Email</th>
+                                    <th>Loc</th>
+                                    <th>Phone</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($allDeletedAdmin as $key => $item)
+                                    <tr>
+                                        <td>{{ $item->id }}</td>
+                                        <td><img src="{{ !empty($item->photo) ? url('upload/admin_images/', $item->photo) : url('upload/no_image.jpg') }}" style="width: 40px; height:40px;"/></td>
+                                        <td><strong>{{ $item->name }}</strong></td>
+                                        <td>{{ $item->username }}</td>
+                                        <td>{{ $item->sponsor }}</td>
+                                        <td>{{ $item->email }}</td>
+                                        <td>{{ $item->state_province }}</td>
+                                        <td>{{ !empty($item->phone) ? $item->phone : 'N/A' }}</td>
+                                        <td>
+                                            <a href="{{ route('restore.admin', $item->id) }}">
+                                                <span data-bs-toggle="tooltip" data-bs-placement="top" title="Restore">
+                                                    <i class="link-icon color-green" data-feather="external-link"></i>
+                                                </span>
+                                            </a>
+                                            <a href="{{ route('force.delete.admin', $item->id) }}" id="delete">
+                                                <span data-bs-toggle="tooltip" data-bs-placement="top" title="Force Delete">
+                                                    <i class="link-icon color-red" data-feather="trash-2"></i>
+                                                </span>
+                                            </a>
+                                        </td>
+                                </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> <!-- end card-body -->
+                </div> <!-- end card -->
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+    @endif
     </div> <!-- end page-content -->
 @endsection
 

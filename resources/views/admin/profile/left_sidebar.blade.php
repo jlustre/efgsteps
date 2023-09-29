@@ -18,7 +18,7 @@
     </div>
     <div class="mt-2">
         <label class="tx-11 fw-bolder mb-0 text-uppercase">Current Rank:</label>
-        <p class="text-muted">{{ $rank[$profileData->current_rank] }}</p>
+        <p class="text-muted">{{ isset($profileData->current_rank) ? $rank[$profileData->current_rank] : '' }}</p>
     </div>
     <div class="mt-2">
         <label class="tx-11 fw-bolder mb-0 text-uppercase">Sponsor:</label>

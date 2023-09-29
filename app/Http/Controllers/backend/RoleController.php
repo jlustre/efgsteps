@@ -12,16 +12,19 @@ use App\Exports\PermissionExport;
 use App\Imports\PermissionImport;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Models\PermissionGroup;
 
 class RoleController extends Controller
 {
     public function AllPermission() {
-        $permissions = Permission::all();
-        return view('backend.pages.permission.all_permission', compact('permissions'));
+        $permissions = Permission::orderBy('group_name')->get();
+        $permission_groups = PermissionGroup::all();
+        return view('backend.pages.permission.all_permission', compact('permissions', 'permission_groups'));
     }//End Method
 
     public function AddPermission() {
-        return view('backend.pages.permission.add_permission');
+        $permission_groups = PermissionGroup::all();
+        return view('backend.pages.permission.add_permission', compact('permission_groups'));
     }//End Method
 
     public function StorePermission(Request $request) {
@@ -66,7 +69,8 @@ class RoleController extends Controller
 
     public function EditPermission($id) {
         $permission = Permission::findOrFail($id);
-        return view('backend.pages.permission.edit_permission', compact('permission'));
+        $permission_groups = PermissionGroup::all();
+        return view('backend.pages.permission.edit_permission', compact('permission', 'permission_groups'));
     }//End Method
 
     public function DeletePermission($id) {
@@ -81,6 +85,70 @@ class RoleController extends Controller
     } // end method
 
     //***************************************
+
+     public function AllPermissionGroup() {
+        $permission_groups = PermissionGroup::all();
+        return view('backend.pages.permission_group.all_permission_group', compact('permission_groups'));
+    }//End Method
+
+    public function AddPermissionGroup() {
+        return view('backend.pages.permission_group.add_permission_group');
+    }//End Method
+
+    public function StorePermissionGroup(Request $request) {
+
+        $request->validate([
+            'name' => 'required|unique:permission_groups|max:250',
+        ]);
+
+        PermissionGroup::create([
+            'name' => $request->name,
+        ]);
+
+        $notification = array(
+            'message' => 'New Permission Group Was Added Successfully!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.permission_group')->with($notification);
+    }//End Method
+
+    public function UpdatePermissionGroup(Request $request, $id) {
+
+        $request->validate([
+            'name' => ['required', Rule::unique('permission_groups')->ignore($id), 'max:250'],
+        ]);
+
+        $permission_group = PermissionGroup::findOrFail($id)->update([
+            'name' => $request->name,
+        ]);
+
+        $notification = array(
+            'message' => 'Permission Group Was Updated Successfully!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.permission_group')->with($notification);
+    }//End Method
+
+    public function EditPermissionGroup($id) {
+        $permission_group = PermissionGroup::findOrFail($id);
+        return view('backend.pages.permission_group.edit_permission_group', compact('permission_group'));
+    }//End Method
+
+    public function DeletePermissionGroup($id) {
+        PermissionGroup::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Permission Group Was Deleted Successfully!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    } // end method
+
+    //***************************************
+
     public function ExportPermission() {
 
        return view('backend.pages.permission.import_permission');

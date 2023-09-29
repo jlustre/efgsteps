@@ -64,10 +64,14 @@
                             <td>{{ $item->sequence }}</td>
                             <td>
                                 <a href="{{ route('edit.step.fap', $item->id) }}">
-                                    <i class="link-icon color-green" data-feather="edit"></i>
+                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                        <i class="link-icon color-green" data-feather="edit"></i>
+                                    </span>
                                 </a>
                                 <a href="{{ route('delete.step.fap', $item->id) }}" id="delete">
-                                    <i class="link-icon color-red" data-feather="delete"></i>
+                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                        <i class="link-icon color-red" data-feather="delete"></i>
+                                    </span>
                                 </a>
                             </td>
                       </tr>

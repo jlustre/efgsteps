@@ -16,7 +16,7 @@
           <div class="col-md-8 col-xl-8 middle-wrapper">
             <div class="row">
                 <div class="col-md-12 stretch-card">
-                    @include('admin.profile.forms')
+                    @include('backend.pages.profile.forms')
                     {{-- @include('admin.profile.comments') --}}
                 </div>
             </div>

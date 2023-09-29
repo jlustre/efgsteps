@@ -28,7 +28,7 @@
 
 @section('page-content')
     <div class="page-content">
-        @include('admin.body.page_header', [$header = 'Role Permission'])
+        @include('admin.body.page_header', [$header = 'Permissions In Roles'])
         <nav class="page-breadcrumb">
             <ol class="breadcrumb d-flex gap-2">
                 <li><a href="{{ route('add.roles.permission') }}" class="btn btn-primary btn-xs">Add New Role Permission</a></li>
@@ -45,7 +45,7 @@
                       <tr>
                         <th>Id</th>
                         <th>Role Name</th>
-                        <th>Permission</th>
+                        <th>Permissions</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -61,10 +61,14 @@
                             </td>
                             <td>
                                 <a href="{{ route('admin.edit.roles', $item->id) }}">
-                                    <i class="link-icon color-green" data-feather="edit"></i>
+                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                        <i class="link-icon color-green" data-feather="edit"></i>
+                                    </span>
                                 </a>
                                 <a href="{{ route('admin.delete.roles', $item->id) }}" id="delete">
-                                    <i class="link-icon color-red" data-feather="delete"></i>
+                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                        <i class="link-icon color-red" data-feather="delete"></i>
+                                    </span>
                                 </a>
                             </td>
                       </tr>

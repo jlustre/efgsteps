@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UsersTableSeeder::class);
         $this->call(RolesTableSeeder::class);
-        $this->call(ChecklistSeeder::class);
+        $this->call(PermissionGroupSeeder::class);
         $this->call(StepSeeder::class);
         \App\Models\User::factory(20)->create();
 

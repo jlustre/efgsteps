@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group mb-3">
-                <label for="name" class="form-label">Role Name <span class="required">*</span></label>
+                <label for="name" class="form-label text-primary">Role Name <span class="required">*</span></label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ $mode == 'add' ? old('name') : $role->name }}"/>
                 @error('name')
                     <span class="text-danger">{{ $message }}</span>
@@ -12,7 +12,7 @@
         </div><!-- Col -->
         <div class="col-sm-12">
             <div class="form-group mb-3">
-                <label for="guard_name" class="form-label">Guard Name <span class="required">*</span></label>
+                <label for="guard_name" class="form-label text-primary">Guard Name <span class="required">*</span></label>
                 <select class="form-select @error('name') is-invalid @enderror" id="guard_name" name="guard_name">
                     <option selected="" disabled="">Select Guard</option>
                     <option value="web" {{ $mode == 'add' ? (old('guard_name') == 'web' ? 'selected' : '') : ($role->guard_name == 'web' ? 'selected' : '') }}>Web</option>
@@ -27,5 +27,5 @@
     </div><!-- Row -->
 
     <button type="submit" class="btn btn-success submit">Save Changes</button>
-    <a href="{{ route('all.roles') }}" class="btn btn-info">Cancel</a>
+    <a href="{{ url()->previous() }}" class="btn btn-info">Cancel</a>
 </form>

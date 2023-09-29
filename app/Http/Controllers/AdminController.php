@@ -32,15 +32,21 @@ class AdminController extends Controller
         return view('admin.admin_login');
     } // end method
 
-    public function AdminProfile() {
-        $id = Auth::user()->id;
+    public function ViewEditProfile($id) {
+        if (empty($id)) {
+            $id = Auth::user()->id;
+        }
+
         $profileData = User::find($id);
 
-        return view('admin.admin_profile', compact('profileData'));
+        return view('backend.pages.profile.profile', compact('profileData', 'id'));
     } // end method
 
-    public function AdminProfileStore(Request $request) {
-        $id = Auth::user()->id;
+    public function ProfileUpdate(Request $request, $id) {
+        if(empty($id)) {
+            $id = Auth::user()->id;
+        }
+
         $profileData = User::find($id);
 
         $profileData->name = $request->name;
@@ -71,7 +77,8 @@ class AdminController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect()->back()->with($notification);
+        return redirect()->route('all.admin')->with($notification);
+        // return redirect()->url()->previous()->with($notification);
     } // end method
 
     //This will show the form
@@ -116,8 +123,33 @@ class AdminController extends Controller
     ///////// Admin /////////
     public function AllAdmin() {
         $alladmin = User::where('role', 'admin')->get();
+        $allAdminArray = $alladmin->toArray();
 
-        return view('backend.pages.admin.all_admin', compact('alladmin'));
+        // dd($allAdminArray);
+
+        for($i=0; $i < count($allAdminArray); $i++) {
+            $sponsor = User::where('username', $allAdminArray[$i]['sponsor'])->first();
+            if($sponsor) {
+               $allAdminArray[$i]['sponsor_data'] = $sponsor;
+            }
+        }
+        // dd($allAdminArray);
+
+        $allDeletedAdmin = User::where('role', 'admin')
+            ->onlyTrashed()
+            ->get();
+        $allDeletedAdminArray = $allDeletedAdmin->toArray();
+
+        if(!empty($allDeletedAdminArray)) {
+            for($j=0; $j < count($allDeletedAdminArray); $j++) {
+                $sponsor = User::where('username', $allDeletedAdminArray[$j]['sponsor'])->first();
+                if($sponsor) {
+                    $allDeletedAdminArray[$j]['sponsor_data'] = $sponsor;
+                }
+            }
+        }
+
+        return view('backend.pages.admin.all_admin', compact('allAdminArray', 'allDeletedAdmin'));
     } // end method
 
     public function AddAdmin() {
@@ -140,6 +172,7 @@ class AdminController extends Controller
             'sponsor' => ['required', new NotEqual('username'), 'exists:users,username',],
             'email' => 'required|email|unique:users',
             'phone' => 'required',
+            'current_rank' => 'required',
             'city_town' => 'required',
             'state_province' => 'required',
             'country' => 'required',
@@ -156,12 +189,27 @@ class AdminController extends Controller
         $user->sponsor = $request->sponsor;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        $user->current_rank = $request->current_rank;
         $user->role = $request->role;
         $user->city_town = $request->city_town;
         $user->state_province = $request->state_province;
         $user->country = $request->country;
         $user->timezone = $request->timezone;
+
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            @unlink(public_path('upload/admin_images/').$user->photo);
+            $filename = date('YmdHi').'_'.$file->getClientOriginalName();
+            $file->move(public_path('upload/admin_images'),$filename);
+            $user->photo = $filename;
+        }
+
         $user->save();
+
+        $user->roles()->detach();
+        if ($request->role) {
+            $user->assignRole($request->role);
+        };
 
         $notification = array(
             'message' => 'New Admin User Was Added Successfully!',
@@ -179,6 +227,7 @@ class AdminController extends Controller
             'sponsor' => ['required',new NotEqual('username'),'exists:users,username'],
             'email' => ['required','email', Rule::unique('users')->ignore($id),],
             'phone' => 'required',
+            'current_rank' => 'required',
             'city_town' => 'required',
             'state_province' => 'required',
             'country' => 'required',
@@ -191,12 +240,27 @@ class AdminController extends Controller
         $user->sponsor = $request->sponsor;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        $user->current_rank = $request->current_rank;
         $user->role =  $request->role;
         $user->city_town = $request->city_town;
         $user->state_province = $request->state_province;
         $user->country = $request->country;
         $user->timezone = $request->timezone;
+
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            @unlink(public_path('upload/admin_images/').$user->photo);
+            $filename = date('YmdHi').'_'.$file->getClientOriginalName();
+            $file->move(public_path('upload/admin_images'),$filename);
+            $user->photo = $filename;
+        }
+
         $user->update();
+
+        $user->roles()->detach();
+        if ($request->role) {
+            $user->assignRole($request->role);
+        };
 
         $notification = array(
             'message' => 'Admin User Was Updated Successfully!',
@@ -207,10 +271,45 @@ class AdminController extends Controller
     } // end method
 
     public function DeleteAdmin($id) {
-        User::findOrFail($id)->delete();
+        $user = User::findOrFail($id);
+
+        if(!is_null($user)) {
+            $user->delete();
+            $user->roles()->detach();
+        }
 
         $notification = array(
             'message' => 'An Admin Was Deleted Successfully!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    } // end method
+
+    public function RestoreAdmin($id) {
+        User::withTrashed()->where('id', $id)->restore();
+        $user = User::findOrFail($id);
+
+        if(!is_null($user)) {
+            if ($user->role) {
+                $user->roles()->detach();
+                $user->assignRole($user->role);
+            };
+        }
+
+        $notification = array(
+            'message' => 'An Admin Was Restored Successfully!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    } // end method
+
+    public function ForceDeleteAdmin($id) {
+        User::withTrashed()->where('id', $id)->forceDelete();
+
+        $notification = array(
+            'message' => 'An Admin Was Force Deleted Successfully!',
             'alert-type' => 'success'
         );
 

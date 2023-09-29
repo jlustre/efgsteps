@@ -54,7 +54,7 @@
                              @endforeach
 
                             <button type="submit" class="btn btn-primary submit">Save Changes</button>
-                            <a href="{{ route('all.roles.permission') }}" class="btn btn-info">Cancel</a>
+                            <a href="{{ url()->previous() }}" class="btn btn-info">Cancel</a>
                         </div> <!-- end card body -->
                     </form>
                 </div> <!-- end card -->

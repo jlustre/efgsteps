@@ -46,7 +46,7 @@
                     <thead>
                       <tr>
                         <th>No.</th>
-                        <th>Id</th>
+                        {{-- <th>Id</th> --}}
                         <th>Permission Name</th>
                         {{-- <th>Guard Name</th> --}}
                         <th>Group Name</th>
@@ -57,16 +57,20 @@
                     @foreach ($permissions as $key => $item)
                         <tr>
                             <td>{{ $key+1 }}</td>
-                            <td>{{ $item->id }}</td>
+                            {{-- <td>{{ $item->id }}</td> --}}
                             <td><strong>{{ $item->name }}</strong></td>
                             {{-- <td>{{ $item->guard_name }}</td> --}}
                             <td>{{ $item->group_name }}</td>
                             <td>
                                 <a href="{{ route('edit.permission', $item->id) }}">
-                                    <i class="link-icon color-green" data-feather="edit"></i>
+                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                        <i class="link-icon color-green" data-feather="edit"></i>
+                                    </span>
                                 </a>
                                 <a href="{{ route('delete.permission', $item->id) }}" id="delete">
-                                    <i class="link-icon color-red" data-feather="delete"></i>
+                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                        <i class="link-icon color-red" data-feather="delete"></i>
+                                    </span>
                                 </a>
                             </td>
                       </tr>

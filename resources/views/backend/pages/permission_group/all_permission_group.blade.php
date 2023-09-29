@@ -28,47 +28,41 @@
 
 @section('page-content')
     <div class="page-content">
-        @include('admin.body.page_header', [$header = 'Roles'])
+        @include('admin.body.page_header', [$header = 'Permission Groups'])
         <nav class="page-breadcrumb">
             <ol class="breadcrumb d-flex gap-2">
-                <li><a href="{{ route('add.role') }}" class="btn btn-primary btn-xs">Add New Role</a></li>
-             </ol>
+                <li><a href="{{ route('add.permission_group') }}" class="btn btn-primary btn-xs">Add New Permission Group</a></li>
+            </ol>
         </nav>
         <div class="row">
 			<div class="col-md-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h6 class="card-title">All Roles</h6>
+                <h6 class="card-title">All Permission Groups</h6>
                 <div class="table-responsive">
                   <table id="dataTableExample" class="table">
                     <thead>
                       <tr>
                         <th>No.</th>
                         <th>Id</th>
-                        <th>Role Name</th>
-                        <th>Guard Name</th>
+                        <th>Group Name</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                    @foreach ($roles as $key => $item)
+                    @foreach ($permission_groups as $key => $item)
                         <tr>
                             <td>{{ $key+1 }}</td>
                             <td>{{ $item->id }}</td>
+                            <td><strong>{{ $item->name }}</strong></td>
                             <td>
-                                <a href="{{ route('admin.edit.roles', $item->id) }}">
-                                    <strong>{{ $item->name }}</strong>
-                                </a>
-                            </td>
-                            <td>{{ $item->guard_name }}</td>
-                            <td>
-                                <a href="{{ route('edit.role', $item->id) }}">
+                                <a href="{{ route('edit.permission_group', $item->id) }}">
                                     <span data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                                         <i class="link-icon color-green" data-feather="edit"></i>
                                     </span>
                                 </a>
-                                <a href="{{ route('delete.role', $item->id) }}" id="delete">
-                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Restore">
+                                <a href="{{ route('delete.permission_group', $item->id) }}" id="delete">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                                         <i class="link-icon color-red" data-feather="delete"></i>
                                     </span>
                                 </a>

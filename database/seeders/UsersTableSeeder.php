@@ -30,6 +30,21 @@ class UsersTableSeeder extends Seeder
             'created_at' => now()
             ],
 
+            // Admin
+            [
+            'name' => 'Joey Lustre',
+            'username' => 'admin',
+            'sponsor' => 'superadmin',
+            'email' => 'jclustre@efgsteps.com',
+            'password' => Hash::make('111'),
+            'role' => 'trainer',
+            'city_town' => 'Burnaby',
+            'state_province' => 'BC',
+            'country' => 'ca',
+            'current_rank' => '3',
+            'created_at' => now()
+            ],
+
             // Trainer
             [
             'name' => 'Trainer',

@@ -74,4 +74,9 @@ class User extends Authenticatable
 
         return $hasPermission;
     } //End Method
+
+    public function userSponsor()
+    {
+        return $this->belongsTo(User::class, 'sponsor', 'username');
+    } //End Method
 }

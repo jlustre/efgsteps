@@ -76,17 +76,20 @@
                 <div class="collapse" id="rolesPermission">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
+                            <a href="{{ route('all.roles') }}" class="nav-link">Roles</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('all.permissions') }}" class="nav-link">Permissions</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('all.roles') }}" class="nav-link">Roles</a>
+                            <a href="{{ route('all.permission_group') }}" class="nav-link">Permission Groups</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('all.roles.permission') }}" class="nav-link">Permissions In Roles</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ route('add.roles.permission') }}" class="nav-link">Add Permissions In Roles</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </li>

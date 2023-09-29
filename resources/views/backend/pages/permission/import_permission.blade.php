@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group mb-3">
-                                    <label for="import_file" class="form-label">Excel File Import <span class="required">*</span></label>
+                                    <label for="import_file" class="form-label text-primary">Excel File Import <span class="required">*</span></label>
                                     <input type="file" class="form-control @error('import_file') is-invalid @enderror" name="import_file" id="import_file"/>
                                     @error('import_file')
                                         <span class="text-danger">{{ $message }}</span>

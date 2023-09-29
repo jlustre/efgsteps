@@ -45,48 +45,15 @@
 	<div class="main-wrapper">
 		<div class="page-wrapper full-page">
 			<div class="page-content d-flex align-items-center justify-content-center">
-
 				<div class="row w-100 mx-0 auth-page">
-					<div class="col-md-8 col-xl-6 mx-auto">
-						<div class="card">
-							<div class="row">
-                <div class="col-md-4 pe-md-0">
-                  <div class="authlogin-side-wrapper">
-
-                  </div>
-                </div>
-                <div class="col-md-8 ps-md-0">
-                  <div class="auth-form-wrapper px-4 py-5">
-                    <a href="#" class="noble-ui-logo logo-light d-block mb-2">EFG<span>Steps</span></a>
-                    <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
-                    <form class="forms-sample" method="post" action="{{ route('login') }}">
-                      @csrf
-                      <div class="mb-3">
-                        <label for="login" class="form-label text-primary">Email Address or Username</label>
-                        <input type="text" class="form-control" name="login" id="login" :value="{{ old('login') }}" placeholder="Email/Username">
-                      </div>
-                      <div class="mb-3">
-                        <label for="password" class="form-label text-primary">Password</label>
-                        <input type="password" class="form-control" name="password" id="password" autocomplete="current-password" placeholder="Password">
-                      </div>
-                      <div class="form-check mb-3">
-                        <input type="checkbox" class="form-check-input" id="authCheck">
-                        <label class="form-check-label" for="authCheck">
-                          Remember me
-                        </label>
-                      </div>
-                      <div>
-                        <button type="submit" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">Login</button>
-                      </div>
-                      <a href="register.html" class="d-block mt-3 text-muted">Not a user? Sign up</a>
-                    </form>
-                  </div>
-                </div>
-              </div>
-						</div>
+					<div class="col-md-8 col-xl-6 mx-auto d-flex flex-column align-items-center">
+						<img src="{{ asset('backend/assets/images/others/404.svg') }}" class="img-fluid mb-2" alt="404">
+						<h1 class="fw-bolder mb-22 mt-2 tx-80 text-muted">404</h1>
+						<h4 class="mb-2">Page Not Found</h4>
+						<h6 class="text-muted mb-3 text-center">Oopps!! The page you were looking for doesn't exist.</h6>
+						<a href="{{ route('admin.dashboard') }}">Back to home</a>
 					</div>
-				</div>
-
+                </div>
 			</div>
 		</div>
 	</div>

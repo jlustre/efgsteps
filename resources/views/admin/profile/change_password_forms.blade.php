@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="mb-3">
-                            <label for="old_password" class="form-label">Old Password <span class="required">*</span></label>
+                            <label for="old_password" class="form-label text-primary">Old Password <span class="required">*</span></label>
                             <input type="password" class="form-control @error('old_password') is-invalid @enderror" name="old_password" id="old_password">
                             @error('old_password')
                                 <span class="text-danger">{{ $message }}</span>
@@ -16,7 +16,7 @@
                     </div><!-- Col -->
                     <div class="col-sm-12">
                         <div class="mb-3">
-                            <label for="new_password" class="form-label">New Password <span class="required">*</span></label>
+                            <label for="new_password" class="form-label text-primary">New Password <span class="required">*</span></label>
                             <input type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" id="new_password">
                             @error('new_password')
                                 <span class="text-danger">{{ $message }}</span>
@@ -25,7 +25,7 @@
                     </div><!-- Col -->
                     <div class="col-sm-12">
                         <div class="mb-3">
-                            <label for="new_password_confirmation" class="form-label">Confirm New Password <span class="required">*</span></label>
+                            <label for="new_password_confirmation" class="form-label text-primary">Confirm New Password <span class="required">*</span></label>
                             <input type="password" class="form-control" name="new_password_confirmation" id="new_password_confirmation">
                         </div>
                     </div><!-- Col -->
